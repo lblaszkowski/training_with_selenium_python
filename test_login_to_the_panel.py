@@ -1,6 +1,7 @@
 import pytest
 import os
 from selenium import webdriver
+import time
 
 
 @pytest.fixture
