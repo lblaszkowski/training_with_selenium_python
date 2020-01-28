@@ -1,17 +1,19 @@
 import pytest
 import os
 from selenium import webdriver
-import time
+from selenium.webdriver.firefox.options import Options
 
 
 @pytest.fixture
-def driver(request, browser="ch"):
+def driver(request, browser="ffs"):
     if browser == "chrome" or browser == "ch":
         wd = webdriver.Chrome(executable_path=r'Driver/CH/chromedriver.exe')
         # request.addfinalizer(wd.quit)
     elif browser == "mozilla" or browser == "ff":
         wd = driver = webdriver.Firefox(executable_path=r'Driver/FF/geckodriver.exe')
         # request.addfinalizer(wd.quit)
+    elif browser == "mozillas" or browser == "ffs":
+        wd = webdriver.Firefox(capabilities={"marionette": False})
     else:
         wd = driver = webdriver.Ie(executable_path=r'Driver/IE11/IEDriverServer.exe')
         IE_Brows = os.path.dirname(__file__)
