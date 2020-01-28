@@ -1,7 +1,8 @@
 import pytest
 import os
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+
 
 
 @pytest.fixture
@@ -13,7 +14,9 @@ def driver(request, browser="ffs"):
         wd = driver = webdriver.Firefox(executable_path=r'Driver/FF/geckodriver.exe')
         # request.addfinalizer(wd.quit)
     elif browser == "mozillas" or browser == "ffs":
-        wd = webdriver.Firefox(capabilities={"marionette": False})
+        # wd = webdriver.Firefox(capabilities={"marionette": False})
+        binary = FirefoxBinary('/path/to/binary')
+        driver = webdriver.Firefox(firefox_binary=binary)
     else:
         wd = driver = webdriver.Ie(executable_path=r'Driver/IE11/IEDriverServer.exe')
         IE_Brows = os.path.dirname(__file__)
