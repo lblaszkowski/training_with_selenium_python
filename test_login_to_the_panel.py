@@ -11,14 +11,14 @@ def driver(request, browser="ffs"):
         wd = webdriver.Chrome(executable_path=r'Driver/CH/chromedriver.exe')
         # request.addfinalizer(wd.quit)
     elif browser == "mozilla" or browser == "ff":
-        wd = driver = webdriver.Firefox(executable_path=r'Driver/FF/geckodriver.exe')
+        wd = webdriver.Firefox(executable_path=r'Driver/FF/geckodriver.exe')
         # request.addfinalizer(wd.quit)
     elif browser == "mozillas" or browser == "ffs":
-        wd = webdriver.Firefox(capabilities={"marionette": False})
         binary = FirefoxBinary('C:/Program Files/Mozilla Firefox/Firefox_ESR_45/firefox')
-        driver = webdriver.Firefox(firefox_binary=binary)
+        wd = webdriver.Firefox(firefox_binary=binary, capabilities={"marionette": False})
+        # request.addfinalizer(wd.quit)
     else:
-        wd = driver = webdriver.Ie(executable_path=r'Driver/IE11/IEDriverServer.exe')
+        wd = webdriver.Ie(executable_path=r'Driver/IE11/IEDriverServer.exe')
         IE_Brows = os.path.dirname(__file__)
         ie_driver_path = IE_Brows + "Driver/IE11/IEDriverServer.exe"
         # request.addfinalizer(wd.quit)
