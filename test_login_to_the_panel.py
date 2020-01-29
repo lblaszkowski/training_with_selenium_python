@@ -19,7 +19,7 @@ def driver(request, browser="ffn"):
         # request.addfinalizer(wd.quit)
     elif browser == "mozillan" or browser == "ffn":
         binary = FirefoxBinary('C:/Program Files/Firefox Nightly/firefox')
-        wd = webdriver.Firefox(firefox_binary=binary, capabilities={"marionette": False})
+        wd = webdriver.Firefox(firefox_binary=binary)
         # request.addfinalizer(wd.quit)
     else:
         wd = webdriver.Ie(executable_path=r'Driver/IE11/IEDriverServer.exe')
