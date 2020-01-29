@@ -14,8 +14,8 @@ def driver(request, browser="ffs"):
         wd = driver = webdriver.Firefox(executable_path=r'Driver/FF/geckodriver.exe')
         # request.addfinalizer(wd.quit)
     elif browser == "mozillas" or browser == "ffs":
-        # wd = webdriver.Firefox(capabilities={"marionette": False})
-        binary = FirefoxBinary('/path/to/binary')
+        wd = webdriver.Firefox(capabilities={"marionette": False})
+        binary = FirefoxBinary('C:/Program Files/Mozilla Firefox/Firefox_ESR_45/firefox')
         driver = webdriver.Firefox(firefox_binary=binary)
     else:
         wd = driver = webdriver.Ie(executable_path=r'Driver/IE11/IEDriverServer.exe')
