@@ -6,7 +6,7 @@ from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 
 @pytest.fixture
-def driver(request, browser="ffs"):
+def driver(request, browser="ffn"):
     if browser == "chrome" or browser == "ch":
         wd = webdriver.Chrome(executable_path=r'Driver/CH/chromedriver.exe')
         # request.addfinalizer(wd.quit)
@@ -15,6 +15,10 @@ def driver(request, browser="ffs"):
         # request.addfinalizer(wd.quit)
     elif browser == "mozillas" or browser == "ffs":
         binary = FirefoxBinary('C:/Program Files/Mozilla Firefox/Firefox_ESR_45/firefox')
+        wd = webdriver.Firefox(firefox_binary=binary, capabilities={"marionette": False})
+        # request.addfinalizer(wd.quit)
+    elif browser == "mozillan" or browser == "ffn":
+        binary = FirefoxBinary('C:/Program Files/Firefox Nightly/firefox')
         wd = webdriver.Firefox(firefox_binary=binary, capabilities={"marionette": False})
         # request.addfinalizer(wd.quit)
     else:
