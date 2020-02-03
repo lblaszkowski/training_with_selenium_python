@@ -20,11 +20,9 @@ def driver(request, browser="ff"):
 def test_loading_page(driver):
     driver.get("http://localhost/litecart/")
     Most_Popular = driver.find_elements_by_xpath("//div[contains(@id,'box-most-popular')]//ul[contains(@class,'listing-wrapper')]//li")
-    for MostPopulars in Most_Popular:
-
-        sticker_name = MostPopulars.find_element_by_xpath("//div[contains(@class,'sticker')]")
-        print(sticker_name.text)
-        print("--------------")
-
-
+    MostPopular_count = len(Most_Popular)
+    # sticker_name = driver.find_elements_by_xpath(".//div[contains(@class,'sticker')]")
+    sticker_name = driver.find_elements_by_xpath("//div[contains(@id,'box-most-popular')]//ul[contains(@class,'listing-wrapper')]//li//div[contains(@class,'sticker')]")
+    number_of_stickers = len(sticker_name)
+    assert (MostPopular_count == number_of_stickers), f"{MostPopular_count} ':' {number_of_stickers} - is not equal to the number of product stickers"
 
