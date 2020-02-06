@@ -42,3 +42,4 @@ def test_loading_page(driver):
     driver.find_element_by_name("h1_title[en]").send_keys("Kaczka")
     driver.find_element_by_name("short_description[en]").send_keys("Opis -- Kaczka")
 
+
