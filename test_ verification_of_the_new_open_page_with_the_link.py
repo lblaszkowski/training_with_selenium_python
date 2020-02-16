@@ -27,22 +27,19 @@ def test_verification_of_the_new_open_page_with_the_link_page(driver):
     driver.find_element_by_name("password").send_keys("admin")
     driver.find_element_by_name("login").click()
     driver.find_element_by_xpath("//li[contains(@id,'app')]//span[text()='Countries']").click()
-    Afghanistan_link = WebDriverWait(driver, 100).until(
-         EC.element_to_be_clickable((By.XPATH, "//table[contains(@class,'dataTable')]//a[text()='Afghanistan']")))
-    Afghanistan_link.click()
+    time.sleep(5)
+    driver.find_element_by_xpath("//table[contains(@class,'dataTable')]//a[text()='Afghanistan']").click()
     main_window = driver.current_window_handle
+    time.sleep(5)
     first_link = driver.find_element_by_xpath("//a[contains(@href,'ISO_3166-1_alpha-2')]")
     first_link.send_keys(Keys.CONTROL + Keys.RETURN)
-    alpha_2 = WebDriverWait(driver, 100).until(
-        EC.element_to_be_clickable((By.CLASS_NAME, "page-ISO_3166-1_alpha-2")))
-    alpha_2.send_keys(Keys.CONTROL + Keys.TAB)
-    driver.switch_to_window(main_window)
+    time.sleep(5)
+    link = driver.find_element_by_xpath("//body[contains(@class,'mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject mw-editable page-ISO_3166-1_alpha-2 rootpage-ISO_3166-1_alpha-2 skin-vector action-view')]")
+    link.send_keys(Keys.CONTROL + Keys.TAB)
 
-    #     # time.sleep(3)
-    #     # driver.find_element_by_class_name('body').send_keys(Keys.CONTROL + 'w')
-    #     # driver.switch_to_window(main_window)
+    # alpha_2 = WebDriverWait(driver, 100).until(
+    #     EC.element_to_be_clickable((By.CLASS_NAME, "page-ISO_3166-1_alpha-2")))
+    # alpha_2.send_keys(Keys.CONTROL + Keys.TAB)
 
-
-    # driver.switch_to.window(driver.window_handles[0])
-    # driver.find_element_by_xpath("//a[contains(@href,'ISO_3166-1_alpha-3')]").click()
-    # driver.close()
+    # driver.find_element_by_tag_name("body").send_keys(Keys.CONTROL + Keys.TAB)
+    # driver.switch_to_window(main_window)
