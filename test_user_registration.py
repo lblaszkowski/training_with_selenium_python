@@ -1,7 +1,8 @@
 import pytest
 from selenium import webdriver
 import time
-
+import string
+import random
 
 
 @pytest.fixture
@@ -18,7 +19,11 @@ def driver(request, browser="ff"):
 
 
 
-def test_loading_page(driver):
+
+
+def test_loading_page(driver, prefix='test', domain='gmail.com'):
+    random_part = ''.join(random.choice(string.ascii_lowercase + string.digits)
+                          for _ in range(10))
     driver.get("http://localhost/litecart/")
     driver.find_element_by_xpath("//a[text()='New customers click here']").click()
     tax_id = driver.find_element_by_name("tax_id")
@@ -36,7 +41,7 @@ def test_loading_page(driver):
     city = driver.find_element_by_name("city")
     city.send_keys("Gdańsk")
     email = driver.find_element_by_name("email")
-    email.send_keys("marcelina.kos111@we.pl")
+    email.send_keys(prefix + random_part + '@' + domain)
     phone = driver.find_element_by_name("phone")
     phone.send_keys("123456789")
     password = driver.find_element_by_name("password")

@@ -2,24 +2,20 @@ import pytest
 from selenium import webdriver
 import time
 from selenium.webdriver.support.ui import Select
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
+
 
 @pytest.fixture
 def driver(request, browser="ff"):
     if browser == "chrome" or browser == "ch":
         wd = webdriver.Chrome(executable_path=r'Driver/CH/chromedriver.exe')
-        # wd = driver.maximize_window()
         request.addfinalizer(wd.quit)
     else:
         wd = webdriver.Firefox(executable_path=r'Driver/FF_026/geckodriver.exe')
-        # wd = driver.maximize_window()
         request.addfinalizer(wd.quit)
     return wd
 
 
-def test_adding_to_cart_in_page(driver, name_file='Kaczkaasas'):
+def test_adding_to_cart_in_page(driver):
     driver.get("http://localhost/litecart/en/")
     driver.find_element_by_xpath("//div[contains(@id,'box-campaigns')]//ul[contains(@class,'listing-wrapper')]//li//div[starts-with(@class,'name')]").click()
     options_Size = Select(driver.find_element_by_name("options[Size]"))
