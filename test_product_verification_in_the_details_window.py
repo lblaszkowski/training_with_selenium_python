@@ -26,25 +26,15 @@ def test_loading_page(driver):
     price_name_color = driver.find_element_by_xpath("//div[contains(@id,'box-campaigns')]//s").value_of_css_property("color")
     print(price_name_color)
     price_promotion_name = driver.find_element_by_xpath("//div[contains(@id,'box-campaigns')]//ul[contains(@class,'listing-wrapper')]//li//strong[starts-with(@class,'campaign-price')]").text
-    price_promotion_color = driver.find_element_by_xpath("//div[contains(@id,'box-campaigns')]//strong[starts-with(@class,'campaign-price')]").value_of_css_property("color")
     driver.execute_script("window.scrollTo(0, 500)")
     product = driver.find_element_by_xpath("//div[contains(@id,'box-campaigns')]//ul[contains(@class,'listing-wrapper')]//li")
     product.click()
     verification_name_product = driver.find_element_by_xpath("//div[contains(@class,'content')]//h1[contains(@class,'title')]").text
     verification_price_name = driver.find_element_by_xpath("//div[contains(@class,'content')]//s[contains(@class,'regular-price')]").text
-    verification_price_color = driver.find_element_by_xpath("//div[contains(@class,'content')]//s[contains(@class,'regular-price')]").value_of_css_property("color")
     verification_price_promotion_name = driver.find_element_by_xpath("//div[contains(@class,'content')]//strong[contains(@class,'campaign-price')]").text
-    verification_price_promotion_color = driver.find_element_by_xpath("//div[contains(@class,'content')]//strong[contains(@class,'campaign-price')]").value_of_css_property("color")
 
-    print(name_product, "==", verification_name_product)
-    print(price_name, "==", verification_price_name)
-    print(price_name_color, "==", verification_price_color)
-    print(price_promotion_name, "==", verification_price_promotion_name)
-    print(price_promotion_color, "==", verification_price_promotion_color)
 
-    assert (price_name_color == verification_price_promotion_color), f"{price_name_color} ':' {verification_price_promotion_color} - kolor ceny podstawowej są różne"
-    assert (price_promotion_color == verification_price_color), f"{price_promotion_color} ':' {verification_price_color} - kolor ceny promocyjnej są różne"
     assert (name_product == verification_name_product), f"{name_product} ':' {verification_name_product} - nazwy produktów są różne"
     assert (price_name == verification_price_name), f"{price_name} ':' {verification_price_name} - kwoty podstawowe są różne"
     assert (price_promotion_name == verification_price_promotion_name), f"{price_promotion_name} ':' {verification_price_promotion_name} - kwoty promocyjne są różne"
-
+    #
